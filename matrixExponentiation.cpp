@@ -2,6 +2,15 @@
 #include <iostream>
 using namespace std;
 
+
+void printMatrix(int **a, int n) {
+    for(int i=0; i<n; i++) {
+        for(int j=0; j<n; j++) 
+            cout << a[i][j] << " ";
+        cout << endl;
+    }
+}
+
 // TO MULTIPLY TWO N*N MATRICES A AND B
 void matMul(int **a, int **b, int n) {
 
@@ -17,7 +26,7 @@ void matMul(int **a, int **b, int n) {
         for(int j=0; j<n; j++) {
             tmp[i][j] = 0;
             for(int k=0; k<n; k++) {
-                tmp[i][j] += a[i][k]*a[k][j];
+                tmp[i][j] += a[i][k]*b[k][j];
             }
         }
     }
@@ -27,6 +36,7 @@ void matMul(int **a, int **b, int n) {
             a[i][j] = tmp[i][j];
         }
     }
+
 
 }
 
@@ -47,12 +57,15 @@ void matExp(int **a, int n, int p) {
 
     while(p) {
         if(p&1) {
+            cout << "I'm here\n";
             matMul(tmp, a, n);
+            // printMatrix(tmp, n);
         }
         p >>= 1;
         matMul(a, a, n);
+        
     } 
-
+    // printMatrix(tmp, n);
     for(int i=0; i<n; i++) {
         for(int j=0; j<n; j++) {
             a[i][j] = tmp[i][j];
@@ -61,13 +74,7 @@ void matExp(int **a, int n, int p) {
 
 }
 
-void printMatrix(int **a, int n) {
-    for(int i=0; i<n; i++) {
-        for(int j=0; j<n; j++) 
-            cout << a[i][j] << " ";
-        cout << endl;
-    }
-}
+
 
 int main() {
 
@@ -83,7 +90,7 @@ int main() {
 
     printMatrix(a, n);
 
-    int pow = 3;
+    int pow = 35;
     matExp(a, n, pow);
     printMatrix(a, n);
 
