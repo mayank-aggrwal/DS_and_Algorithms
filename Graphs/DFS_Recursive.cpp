@@ -33,7 +33,7 @@ void printDFS(unordered_map<int, vector<int>*> &graph, int v) {
         visited[i] = false;
     }
 
-    cout << "DFS Traversal: ";
+    cout << "DFS Traversal (" <<  v << " as starting vertex): ";
     printDFS(graph, v, visited);
     cout << endl;
 
@@ -80,6 +80,14 @@ int main() {
         graph[edges[i][0]] -> push_back(edges[i][1]);
     }
 
+    // PRINT DFS USING DIFFERENT VERTICES AS STARTING VERTEX
     printDFS(graph, 0);
+    printDFS(graph, 1);
+    printDFS(graph, 2);
+    printDFS(graph, 3);
+    printDFS(graph, 4);
+    printDFS(graph, 5);
+    printDFS(graph, 6);
+    printDFS(graph, 7);
 
 }
