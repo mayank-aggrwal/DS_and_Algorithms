@@ -5,7 +5,8 @@
 using namespace std;
 
 // FUNCTION TO PRINT THE ADJACENCY LIST FORMED OF THE GRAPH //
-void printAdjacencyList( unordered_map<int, vector<int> *> &graph, int V) {
+void printAdjacencyList( unordered_map<int, vector<int> *> &graph) {
+    int V = graph.size();
     cout << "Adjacency list: \n";
     for(int i=0; i<V; i++) {
         cout << "  " << i <<"  |  ";
@@ -62,6 +63,6 @@ int main() {
         graph[edges[i][0]] -> push_back(edges[i][1]);
     }
 
-    printAdjacencyList(graph, V);
+    printAdjacencyList(graph);
 
 }
