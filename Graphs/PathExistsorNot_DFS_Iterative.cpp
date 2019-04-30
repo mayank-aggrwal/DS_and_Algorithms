@@ -7,10 +7,16 @@ using namespace std;
 
 bool hasPath(unordered_map<int, vector<int>*> &graph, int v1, int v2, bool *visited) {
 
+    // INITIALISE THE STACK
     stack<int> s;
+
+    // PUSH FIRST VERTEX IN STACK
     s.push(v1);
     
+    // LOOP WHILE STACK IS NOT EMPTY
     while(!s.empty()) {
+
+        // POP FIRST ELEMENT
         int curr = s.top();
         s.pop();
         
