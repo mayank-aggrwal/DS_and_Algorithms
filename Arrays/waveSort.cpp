@@ -36,12 +36,15 @@ void waveSort(int *arr, int n) {
 
 int main() {
 
+    // INPUT ARRAY TO BE WAVE ARRANGED
     int arr[] = {1,2,3,0,6,88,89,43,21};
     int n = sizeof(arr)/sizeof(int);
     printArray(arr, n);
 
+    // WAVE ARRANGE THE GIVEN ARRAY
     waveSort(arr, n);
 
+    // PRINT THE ARRANGED ARRAY
     cout << "After wave sort - ";
     printArray(arr, n);
 
