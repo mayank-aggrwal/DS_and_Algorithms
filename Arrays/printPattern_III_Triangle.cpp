@@ -20,8 +20,11 @@ void printPattern(int n) {
 int main() {
 
     int n;
+
+    // INPUT FOR NUMBER OF ROWS
     cout << "Enter the number of rows: ";
     cin >> n;
 
+    // PRINT PATTERN
     printPattern(n);
 }
