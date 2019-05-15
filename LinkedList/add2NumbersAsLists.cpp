@@ -12,18 +12,14 @@ class node{
     }
 };
 
-node* createLinkedList() {
-    node *head = NULL, *last;
-    for(int i = 1; i < 12; i++) {
-        node *np = new node(i);
-        if (head == NULL) {
-            head = np;
-            last = np;
-        }
-        else {
-            last -> next = np;
-            last = np;
-        }
+node* createLinkedList(int n) {
+    node *head = NULL;
+    while(n) {
+        int digit = n % 10;
+        node *np = new node(digit);
+        np -> next = head;
+        head = np;
+        n /= 10;
     }
     return head;
 }
@@ -37,6 +33,23 @@ node* reverseLinkedList(node *head) {
         curr = x;
     }
     return prev;
+}
+
+node* lastNodeLL(node *head) {
+    node *tmp = head;
+    while(tmp -> next != NULL) 
+        tmp = tmp -> next;
+    return tmp;
+}
+
+int lenLL(node *head) {
+    int cnt = 0;
+    node *tmp = head;
+    while(tmp) {
+        cnt++;
+        tmp = tmp -> next;
+    }
+    return cnt;
 }
 
 node* addLinkedLists(node *head1, node *head2) {
@@ -64,12 +77,11 @@ node* addLinkedLists(node *head1, node *head2) {
     }
 
     if(carry) {
-        if(t1 != NULL) {
-            while(carry) {
+        while(carry && (t1 != NULL)) {
                 int x = t1->data + carry;
                 t1->data = x % 10;
                 carry = x / 10;
-            }
+                t1 = t1->next;
         }
         if(carry) {
             node *np = new node(carry);
@@ -98,7 +110,7 @@ void printLL(node *head) {
 
 int main() {
     node *head1 = NULL, *head2 = NULL;
-    int m = 1234, n = 678;
+    int m = 999234, n = 978;
 
     // CREATE LINKED LISTS FROM THE TWO NUMBERS
     head1 = createLinkedList(m);
