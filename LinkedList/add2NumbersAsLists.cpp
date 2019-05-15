@@ -81,19 +81,24 @@ node* addLinkedLists(node *head1, node *head2) {
         t1 = t1->next;
         t2 = t2->next;
     }
-
+    
+    // IF THERE IS CARRY AND BIGGER LIST HAS NOT ENDED, THEN ADD CARRY TO THE LIST
     while(carry && (t1 != NULL)) {
         int x = t1->data + carry;
         t1->data = x % 10;
         carry = x / 10;
         t1 = t1->next;
     }
+
+    // IF CARRY AND BIGGER LIST IS FINISHED, GENERATE NEW NODE TO ACCOMODATE CARRY 
+    // AND ADD IT TO THE END OF THE LIST
     if(carry) {
         node *np = new node(carry);
         node *last = lastNodeLL(rHead1);
         last -> next = np;
     }
 
+    // RETUR THE REVERSED LIST
     return reverseLinkedList(rHead1);
 
 }
