@@ -37,6 +37,8 @@ node* reverseLinkedList(node *head) {
 
 node* lastNodeLL(node *head) {
     node *tmp = head;
+
+    // TRAVERSE WHOLE LINKED LIST UNTIL THE LAST NODE I.E. TMP->NEXT = NULL
     while(tmp -> next != NULL) 
         tmp = tmp -> next;
     return tmp;
@@ -58,9 +60,11 @@ node* addLinkedLists(node *head1, node *head2) {
     node *rHead1 = reverseLinkedList(head1);
     node *rHead2 = reverseLinkedList(head2);
 
+    // GET LENGTH OF BOTH LINKED LISTS
     int len1 = lenLL(rHead1);
     int len2 = lenLL(rHead2);
 
+    // MAKE SURE RHEAD1 AND LEN1 CONTAIN THE BIGGER OF THE TWO LISTS
     if(len2 > len1) {
         swap(len1, len2);
         swap(rHead1, rHead2);
@@ -68,6 +72,8 @@ node* addLinkedLists(node *head1, node *head2) {
 
     int carry = 0;
     node *t1 = rHead1, *t2 = rHead2;
+
+    // LOOP TILL THE SMALLER LIST DOES NOT ENDS
     while(t2) {
         int x = t1->data + t2->data + carry;
         carry = x / 10;
@@ -76,18 +82,16 @@ node* addLinkedLists(node *head1, node *head2) {
         t2 = t2->next;
     }
 
+    while(carry && (t1 != NULL)) {
+        int x = t1->data + carry;
+        t1->data = x % 10;
+        carry = x / 10;
+        t1 = t1->next;
+    }
     if(carry) {
-        while(carry && (t1 != NULL)) {
-                int x = t1->data + carry;
-                t1->data = x % 10;
-                carry = x / 10;
-                t1 = t1->next;
-        }
-        if(carry) {
-            node *np = new node(carry);
-            node *last = lastNodeLL(rHead1);
-            last -> next = np;
-        }
+        node *np = new node(carry);
+        node *last = lastNodeLL(rHead1);
+        last -> next = np;
     }
 
     return reverseLinkedList(rHead1);
